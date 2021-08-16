@@ -1,4 +1,5 @@
 import axios from 'axios';
+import getTestPayments from './mocks/getPayments';
 
 /**
  * @var {Axios}
@@ -13,11 +14,11 @@ const instance = axios.create({
  * @param {Object} params
  * @returns {Promise}
  */
-const getPayments = (params = {}) => instance.request({
+const getPayments = !process.env.VUE_APP_TEST_MODE ? (params = {}) => instance.request({
   method: 'get',
   url: '/api/v1/payments',
   params,
-});
+}) : getTestPayments;
 
 export default {
   instance,
