@@ -1,6 +1,5 @@
 <template>
   <main class="container mt-md-5">
-
     <!-- Loading spinner -->
     <ui-spinner v-if="isLoading" />
 
@@ -10,25 +9,19 @@
           <p>You can clear cache and load data again.</p>
         </template>
         <template #footer>
-          <ui-button type="primary">
-            Clear cache
-          </ui-button>
+          <ui-button type="primary" @click="load()"> Clear cache </ui-button>
         </template>
       </ui-alert>
 
-      <data-table
-        :rows="data"
-        :columns="columns"
-      />
-    </template>
-  </main>
+      <data-table :rows="data" :columns="columns" />
+  </template>
+</main> 
 </template>
 
 <script>
 import { mapActions, mapState } from 'vuex';
 
 export default {
-
   name: 'AppContent',
 
   data: () => ({
@@ -57,11 +50,7 @@ export default {
   }),
 
   computed: {
-    ...mapState([
-      'isLoading',
-      'isCached',
-      'data',
-    ]),
+    ...mapState(['isLoading', 'isCached', 'data']),
   },
 
   created() {
@@ -69,9 +58,7 @@ export default {
   },
 
   methods: {
-    ...mapActions([
-      'load',
-    ]),
+    ...mapActions(['load']),
   },
 };
 </script>
